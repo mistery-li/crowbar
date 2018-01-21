@@ -3,4 +3,4 @@ project(crowbar C)
 
 set(CMAKE_C_STANDARD 99)
 
-add_executable(crowbar main.c)
+add_executable(crowbar main.c token.h main.c lexicalanalyzer.c parser.c)

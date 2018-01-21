@@ -122,6 +122,33 @@ crowbar/fast:
 	$(MAKE) -f CMakeFiles\crowbar.dir\build.make CMakeFiles/crowbar.dir/build
 .PHONY : crowbar/fast
 
+lexicalanalyzer.obj: lexicalanalyzer.c.obj
+
+.PHONY : lexicalanalyzer.obj
+
+# target to build an object file
+lexicalanalyzer.c.obj:
+	$(MAKE) -f CMakeFiles\crowbar.dir\build.make CMakeFiles/crowbar.dir/lexicalanalyzer.c.obj
+.PHONY : lexicalanalyzer.c.obj
+
+lexicalanalyzer.i: lexicalanalyzer.c.i
+
+.PHONY : lexicalanalyzer.i
+
+# target to preprocess a source file
+lexicalanalyzer.c.i:
+	$(MAKE) -f CMakeFiles\crowbar.dir\build.make CMakeFiles/crowbar.dir/lexicalanalyzer.c.i
+.PHONY : lexicalanalyzer.c.i
+
+lexicalanalyzer.s: lexicalanalyzer.c.s
+
+.PHONY : lexicalanalyzer.s
+
+# target to generate assembly for a file
+lexicalanalyzer.c.s:
+	$(MAKE) -f CMakeFiles\crowbar.dir\build.make CMakeFiles/crowbar.dir/lexicalanalyzer.c.s
+.PHONY : lexicalanalyzer.c.s
+
 main.obj: main.c.obj
 
 .PHONY : main.obj
@@ -149,6 +176,33 @@ main.c.s:
 	$(MAKE) -f CMakeFiles\crowbar.dir\build.make CMakeFiles/crowbar.dir/main.c.s
 .PHONY : main.c.s
 
+parser.obj: parser.c.obj
+
+.PHONY : parser.obj
+
+# target to build an object file
+parser.c.obj:
+	$(MAKE) -f CMakeFiles\crowbar.dir\build.make CMakeFiles/crowbar.dir/parser.c.obj
+.PHONY : parser.c.obj
+
+parser.i: parser.c.i
+
+.PHONY : parser.i
+
+# target to preprocess a source file
+parser.c.i:
+	$(MAKE) -f CMakeFiles\crowbar.dir\build.make CMakeFiles/crowbar.dir/parser.c.i
+.PHONY : parser.c.i
+
+parser.s: parser.c.s
+
+.PHONY : parser.s
+
+# target to generate assembly for a file
+parser.c.s:
+	$(MAKE) -f CMakeFiles\crowbar.dir\build.make CMakeFiles/crowbar.dir/parser.c.s
+.PHONY : parser.c.s
+
 # Help Target
 help:
 	@echo The following are some of the valid targets for this Makefile:
@@ -158,9 +212,15 @@ help:
 	@echo ... crowbar
 	@echo ... edit_cache
 	@echo ... rebuild_cache
+	@echo ... lexicalanalyzer.obj
+	@echo ... lexicalanalyzer.i
+	@echo ... lexicalanalyzer.s
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s
+	@echo ... parser.obj
+	@echo ... parser.i
+	@echo ... parser.s
 .PHONY : help
 
 

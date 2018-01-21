@@ -1,5 +1,7 @@
 file(REMOVE_RECURSE
   "CMakeFiles/crowbar.dir/main.c.obj"
+  "CMakeFiles/crowbar.dir/lexicalanalyzer.c.obj"
+  "CMakeFiles/crowbar.dir/parser.c.obj"
   "crowbar.pdb"
   "crowbar.exe"
   "crowbar.exe.manifest"

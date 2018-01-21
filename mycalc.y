@@ -20,6 +20,12 @@ line
     {
         printf(">>%1f\n", $1);
     }
+    | error CR
+    {
+        yyclearin;
+        yyerrok;
+    }
+    ;
 expression
     : term
     | expression ADD term

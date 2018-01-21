@@ -76,7 +76,16 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="C:/Users/liii/CLionProjects/crowbar/lexicalanalyzer.c">
+			<Option target="crowbar"/>
+		</Unit>
 		<Unit filename="C:/Users/liii/CLionProjects/crowbar/main.c">
+			<Option target="crowbar"/>
+		</Unit>
+		<Unit filename="C:/Users/liii/CLionProjects/crowbar/parser.c">
+			<Option target="crowbar"/>
+		</Unit>
+		<Unit filename="C:/Users/liii/CLionProjects/crowbar/token.h">
 			<Option target="crowbar"/>
 		</Unit>
 		<Unit filename="C:/Users/liii/CLionProjects/crowbar/CMakeLists.txt">

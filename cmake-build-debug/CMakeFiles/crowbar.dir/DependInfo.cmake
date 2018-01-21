@@ -4,7 +4,9 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
+  "C:/Users/liii/CLionProjects/crowbar/lexicalanalyzer.c" "C:/Users/liii/CLionProjects/crowbar/cmake-build-debug/CMakeFiles/crowbar.dir/lexicalanalyzer.c.obj"
   "C:/Users/liii/CLionProjects/crowbar/main.c" "C:/Users/liii/CLionProjects/crowbar/cmake-build-debug/CMakeFiles/crowbar.dir/main.c.obj"
+  "C:/Users/liii/CLionProjects/crowbar/parser.c" "C:/Users/liii/CLionProjects/crowbar/cmake-build-debug/CMakeFiles/crowbar.dir/parser.c.obj"
   )
 set(CMAKE_C_COMPILER_ID "GNU")
 
