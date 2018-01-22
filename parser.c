@@ -32,14 +32,33 @@ double parse_expression(void);
 static double
 parse_primary_expression() {
     Token token;
+    double value = 0.0;
+    int minus_flag = 0;
+
+    my_get_token(&token);
+    if (token.kind == SUB_OPERATOR_TOKEN) {
+        minus_flag = 1;
+    } else {
+        unget_token(&token);
+    }
 
     my_get_token(&token);
     if (token.kind == NUMBER_TOKEN) {
-        return token.value;
+        value = token.value;
+    } else if (token.kind == LEFT_PAREN_TOKEN) {
+        value = parse_expression();
+        my_get_token(&token);
+        if (token.kind != RIGHT_PAREN_TOKEN) {
+            fprintf(stderr, "missing ')' error.\n");
+            exit(1);
+        }
+    } else {
+        unget_token(&token);
     }
-    fprintf(stderr, "syntax error.\n");
-    exit(1);
-    return 0.0; /* make compiler happy */
+    if (minus_flag) {
+        value = -value;
+    }
+    return value;
 }
 
 static double
@@ -114,91 +133,3 @@ main(int argc, char **argv)
     }
     return 0;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
