@@ -76,16 +76,34 @@
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="C:/Users/liii/CLionProjects/crowbar/lexicalanalyzer.c">
+		<Unit filename="C:/Users/liii/CLionProjects/crowbar/CRB.h">
+			<Option target="crowbar"/>
+		</Unit>
+		<Unit filename="C:/Users/liii/CLionProjects/crowbar/CRB_dev.h">
+			<Option target="crowbar"/>
+		</Unit>
+		<Unit filename="C:/Users/liii/CLionProjects/crowbar/DBG.h">
+			<Option target="crowbar"/>
+		</Unit>
+		<Unit filename="C:/Users/liii/CLionProjects/crowbar/MEM.h">
+			<Option target="crowbar"/>
+		</Unit>
+		<Unit filename="C:/Users/liii/CLionProjects/crowbar/create.c">
+			<Option target="crowbar"/>
+		</Unit>
+		<Unit filename="C:/Users/liii/CLionProjects/crowbar/crowbar.h">
+			<Option target="crowbar"/>
+		</Unit>
+		<Unit filename="C:/Users/liii/CLionProjects/crowbar/error_message.c">
+			<Option target="crowbar"/>
+		</Unit>
+		<Unit filename="C:/Users/liii/CLionProjects/crowbar/execute.c">
 			<Option target="crowbar"/>
 		</Unit>
 		<Unit filename="C:/Users/liii/CLionProjects/crowbar/main.c">
 			<Option target="crowbar"/>
 		</Unit>
-		<Unit filename="C:/Users/liii/CLionProjects/crowbar/parser.c">
-			<Option target="crowbar"/>
-		</Unit>
-		<Unit filename="C:/Users/liii/CLionProjects/crowbar/token.h">
+		<Unit filename="C:/Users/liii/CLionProjects/crowbar/util.c">
 			<Option target="crowbar"/>
 		</Unit>
 		<Unit filename="C:/Users/liii/CLionProjects/crowbar/CMakeLists.txt">
