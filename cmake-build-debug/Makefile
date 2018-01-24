@@ -176,6 +176,33 @@ error_message.c.s:
 	$(MAKE) -f CMakeFiles\crowbar.dir\build.make CMakeFiles/crowbar.dir/error_message.c.s
 .PHONY : error_message.c.s
 
+eval.obj: eval.c.obj
+
+.PHONY : eval.obj
+
+# target to build an object file
+eval.c.obj:
+	$(MAKE) -f CMakeFiles\crowbar.dir\build.make CMakeFiles/crowbar.dir/eval.c.obj
+.PHONY : eval.c.obj
+
+eval.i: eval.c.i
+
+.PHONY : eval.i
+
+# target to preprocess a source file
+eval.c.i:
+	$(MAKE) -f CMakeFiles\crowbar.dir\build.make CMakeFiles/crowbar.dir/eval.c.i
+.PHONY : eval.c.i
+
+eval.s: eval.c.s
+
+.PHONY : eval.s
+
+# target to generate assembly for a file
+eval.c.s:
+	$(MAKE) -f CMakeFiles\crowbar.dir\build.make CMakeFiles/crowbar.dir/eval.c.s
+.PHONY : eval.c.s
+
 execute.obj: execute.c.obj
 
 .PHONY : execute.obj
@@ -272,6 +299,9 @@ help:
 	@echo ... error_message.obj
 	@echo ... error_message.i
 	@echo ... error_message.s
+	@echo ... eval.obj
+	@echo ... eval.i
+	@echo ... eval.s
 	@echo ... execute.obj
 	@echo ... execute.i
 	@echo ... execute.s

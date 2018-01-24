@@ -97,6 +97,9 @@
 		<Unit filename="C:/Users/liii/CLionProjects/crowbar/error_message.c">
 			<Option target="crowbar"/>
 		</Unit>
+		<Unit filename="C:/Users/liii/CLionProjects/crowbar/eval.c">
+			<Option target="crowbar"/>
+		</Unit>
 		<Unit filename="C:/Users/liii/CLionProjects/crowbar/execute.c">
 			<Option target="crowbar"/>
 		</Unit>
