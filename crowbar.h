@@ -40,6 +40,19 @@ typedef enum {
     RUNTIME_ERRPR_COUNT_PLUS_1
 } RumtimeError;
 
+typedef enum {
+    INT_MESSAGE_ARGUMENT = 1,
+    DOUBLE_MESSAGE_ARGUMENT,
+    STRING_MESSAGE_ARGUMENT,
+    CHARACTER_MESSAGE_ARGUMENT,
+    POINTER_MESSAGE_ARGUMENT,
+    MESSAGE_ARGUMENT_END
+} MessageArgumentType;
+
+typedef struct {
+    char *format;
+} MessageFormat;
+
 typedef struct Expression_tag Expression;
 
 typedef enum {
@@ -47,7 +60,7 @@ typedef enum {
     INT_EXPRESSION,
     DOUBLE_EXPRESSION,
     STRING_EXPRESSION,
-    INDENTIFIER_EXPRESSION,
+    IDENTIFIER_EXPRESSION,
     ASSIGN_EXPRESSION,
     ADD_EXPRESSION,
     SUB_EXPRESSION,
@@ -67,6 +80,21 @@ typedef enum {
     NULL_EXPRESSION,
     EXPRESSION_TYPE_COUNT_PLUS_1
 } ExpressionType;
+
+#define dkc_is_math_operator(operator) \
+    ((operator) == ADD_EXPRESSION || (operator) == SUB_EXPRESSION\
+        || (operator) == MUL_EXPRESSION || (operator) == DIV_EXPRESSION\
+        || (operator) == MOD_EXPRESSION)
+
+#define dkc_is_compare_operator(operator) \
+    ((operator) == EQ_EXPRESSION || (operator) == NE_EXPRESSION\
+        || (operator) == GE_EXPRESSION || (operator) == GE_EXPRESSION\
+        || (operator) == LT_expression || (operator) == LE_EXPRESSION)
+
+typedef struct ArgumentList_tag {
+    Expression *expression;
+    struct ArgumentList_tag *next;
+} ArgumentList;
 
 typedef struct {
     Expression  *left;
@@ -88,7 +116,6 @@ struct Expression_tag {
         FunctionCallExpression  function_call_expression;
     } u;
 };
-
 
 
 typedef struct ParameterList_tag {
@@ -198,6 +225,16 @@ typedef struct {
     } u;
 } StatementResult;
 
+typedef struct GlobalVariableRef_tag {
+    Variable *variable;
+    struct GlobalVariableRef_tag *next;
+} GlobalVariableRef;
+
+typedef struct {
+    Variable *variable;
+    GlobalVariableRef   *global_variable;
+} LocalEnvironment;
+
 struct Statement_tag {
     StatementType       *type;
     int                 line_number;
@@ -211,6 +248,16 @@ struct Statement_tag {
     } u;
 };
 
+struct CRB_String_tag {
+    int     ref_count;
+    char    *string;
+    CRB_Boolean is_literal;
+};
+
+typedef struct {
+    CRB_String *string;
+} StringPool;
+
 struct CRB_Interpreter_tag {
     MEM_Storage        interpreter_storage;
     MEM_Storage        execute_storage;
@@ -222,3 +269,28 @@ struct CRB_Interpreter_tag {
 
 Expression *crb_alloc_expression(ExpressionType type);
 
+CRB_String *crb_literal_to_crb_string(CRB_Interpreter *inter, char *str);
+
+void crb_release_string(CRB_String *str);
+
+char *crb_get_operator_string(ExpressionType type);
+
+Variable *
+crb_search_global_variable(CRB_Interpreter *inter, char *identifier);
+void crb_add_local_variable(LocalEnvironment *env, char *identifier, CRB_Value *value);
+
+Variable *
+crb_search_local_variable(LocalEnvironment *env, char *identifier);
+
+void crb_refer_string(CRB_String *str);
+
+CRB_Value crb_eval_binary_expression(CRB_Interpreter *inter, LocalEnvironment *env, Expression *expr);
+
+
+void crb_runtime_error(int line_number, RumtimeError id, ...);
+
+CRB_Interpreter *crb_get_current_interpreter(void);
+
+
+StatementResult
+crb_execute_statement_list(CRB_Interpreter *inter, LocalEnvironment *env, StatementList *list);

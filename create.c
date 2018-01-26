@@ -5,6 +5,7 @@
 #include "MEM.h"
 #include "DBG.h"
 #include "crowbar.h"
+#include "CRB_dev.h"
 
 void
 crb_function_define(char *identifier, ParameterList *parameter_list,
@@ -49,4 +50,22 @@ crb_create_minus_expression(Expression *operand)
         exp->u.minus_expression = operand;
         return exp;
     }
+}
+
+static Expression
+convert_value_to_expression(CRB_Value *v)
+{
+    Expression expr;
+    if (v->type == CRB_INT_VALUE) {
+        expr.type = INT_EXPRESSION;
+        expr.u.int_value = v->u.int_value;
+    } else if (v->type == CRB_DOUBLE_VALUE) {
+        expr.type = DOUBLE_EXPRESSION;
+        expr.u.double_value = v->u.double_value;
+    } else {
+        DBG_assert(v->type == CRB_BOOLEAN_VALUE, ("v->type..%d\n", v->type));
+        expr.type = BOOLEAN_EXPRESSION;
+        expr.u.boolean_value = v->u.boolean_value;
+    }
+    return expr;
 }

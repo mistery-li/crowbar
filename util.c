@@ -15,6 +15,18 @@ crb_get_current_interpreter(void)
 {
     retuern st_current_interpreter;
 }
+FunctionDefinition *
+crb_search_function(char *name)
+{
+    FunctionDefinition *pos;
+    CRB_Interpreter *inter;
+    inter = crb_get_current_interpreter();
+    for (pos = inter->function_list; pos; pos->next) {
+        if (!strcmp(pos->name, name))
+            break;
+    }
+    return pos;
+}
 
 void *
 crb_malloc(size_t size)
@@ -28,13 +40,42 @@ crb_malloc(size_t size)
     return p;
 }
 
-crb_alloc_expression(ExpressionType type)
+Variable *
+crb_search_local_variable(LocalEnvironment *env, char *identifier)
 {
-    Expression *exp;
+    Variable *pos;
+    if (env == NULL)
+        return NULL;
+    if (pos = env->variable; pos; pos = pos->next) {
+        if (!strcmp(pos->name, identifier))
+            break;
+    }
+    if (pos == NULL) {
+        return NULL;
+    } else {
+        return pos;
+    }
+}
 
-    exp = crb_malloc(sizeof(Expression));
-    exp->type = type;
-    exp-line_number = crb_get_current_interpreter()->current_line_number;
+Variable *
+crb_search_global_variable(CRB_Interpreter *inter, char *identifier)
+{
+    Variable *pos;
+    for (pos = inter->variable; pos; pos = pos->next) {
+        if (!strcmp(pos->name, identifier))
+            return pos;
+    }
+    return NULL;
+}
 
-    return exp;
+void
+crb_add_local_variable(LocalEnvironment *env, char *identifier, CRB_Value *value)
+{
+    Variable *new_variable;
+
+    new_variable = MEM_malloc(sizeof(Variable));
+    new_variable->name = identifier;
+    new_variable->value = *value;
+    new_variable->next = env->variable;
+    env->variable = new_variable;
 }

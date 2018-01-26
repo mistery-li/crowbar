@@ -11,3 +11,8 @@
 typedef struct MEM_Storage_tag *MEM_Storage;
 
 #endif //CROWBAR_MEM_H
+
+
+void MEM_free_func(MEM_Controller controller, void *ptr);
+
+#define MEM_free(ptr) (MEM_free_func(MEM_CURRENT_CONTROLLER, prt))
