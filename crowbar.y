@@ -31,7 +31,7 @@
 %type   <statement> statement global_statement
         if_statement while_statement for_statement
         return_statement break_statement continue_statement
-%type   <statement_list> break_statement continue_statement
+%type   <statement_list> statement_list
 %type   <block> block
 %type   <elsif> elsif elsif_list
 %type   <identifier_list> identifier_list
@@ -46,7 +46,7 @@ definition_or_statement
         {
             CRB_Interpreter *inter = crb_get_current_interpreter();
 
-            intter->statement_list
+            inter->statement_list
                 = crb_chain_statement_list(inter->statement_list, $1);
         }
         ;
@@ -114,8 +114,8 @@ logical_and_expression
         }
         ;
 equality_expression
-        : relation_expression
-        | equality_expression EQ relation_expression
+        : relational_expression
+        | equality_expression EQ relational_expression
         {
             $$ = crb_create_binary_expression(EQ_EXPRESSION, $1, $3);
         }
@@ -124,7 +124,7 @@ equality_expression
             $$ = crb_create_binary_expression(NE_EXPRESSION, $1, $3);
         }
         ;
-relation_expression
+relational_expression
         : additive_expression
         | relational_expression GT additive_expression
         {
@@ -256,7 +256,7 @@ if_statement
             $$ = crb_create_if_statement($3, $5, $6, $8);
         }
         ;
-elseif_list
+elsif_list
         : elsif
         | elsif_list elsif
         {
@@ -264,7 +264,7 @@ elseif_list
         }
         ;
 elsif
-        : ELSEIF LP expression RP block
+        : ELSIF LP expression RP block
         {
             $$ = crb_create_elsif($3, $5);
         }
@@ -298,7 +298,7 @@ return_statement
 break_statement
         : BREAK SEMICOLON
         {
-            $$ = crb_create_return_statement($2);
+            $$ = crb_create_break_statement();
         }
         ;
 continue_statement

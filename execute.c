@@ -38,7 +38,7 @@ execute_global_statement(CRB_Interpreter *inter, LocalEnvironment *env, Statemen
         GlobalVariableRef *ref_pos;
         GlobalVariableRef *new_ref;
         Variable *variable;
-        for (ref_pos = env->global_variable; ref_pos; ref_pos = ref_pos->neext) {
+        for (ref_pos = env->global_variable; ref_pos; ref_pos = ref_pos->next) {
             if (!strcmp(ref_pos->variable->name, pos->name))
                 goto NEXT_IDENTIFIER;
         }
@@ -58,7 +58,7 @@ execute_global_statement(CRB_Interpreter *inter, LocalEnvironment *env, Statemen
 }
 
 static StatementResult
-execute_elsif(CRB_Interpreter *itner, LocalEnvironment *env, Elsif *elsif_list, CRB_Boolean *executed)
+execute_elsif(CRB_Interpreter *inter, LocalEnvironment *env, Elsif *elsif_list, CRB_Boolean *executed)
 {
     StatementResult result;
     CRB_Value cond;
@@ -67,7 +67,7 @@ execute_elsif(CRB_Interpreter *itner, LocalEnvironment *env, Elsif *elsif_list, 
     *executed = CRB_FALSE;
     result.type = NORMAL_STATEMENT_RESULT;
     for (pos = elsif_list; pos; pos = pos->next) {
-        cond = crb_eval_expression(itner, env, pos->condition);
+        cond = crb_eval_expression(inter, env, pos->condition);
         if (cond.type != CRB_BOOLEAN_VALUE) {
             crb_runtime_error(pos->condition->line_number, NOT_BOOLEAN_TYPE_ERR, MESSAGE_ARGUMENT_END);
         }
@@ -94,7 +94,7 @@ execute_if_statement(CRB_Interpreter *inter, LocalEnvironment *env, Statement *s
     if (cond.type != CRB_BOOLEAN_VALUE) {
         crb_runtime_error(statement->u.if_s.condition->line_number, NOT_BOOLEAN_TYPE_ERR, MESSAGE_ARGUMENT_END);
     }
-    DBG_assert(cond,type == CRB_BOOLEAN_VALUE, ("cond.type..%d", cond.type));
+    DBG_assert(cond.type == CRB_BOOLEAN_VALUE, ("cond.type..%d", cond.type));
 
     if (cond.u.boolean_value) {
         result = crb_execute_statement_list(inter, env, statement->u.if_s.then_block->statement_list);
@@ -153,7 +153,7 @@ execute_for_statement(CRB_Interpreter *inter, LocalEnvironment *env, Statement *
             if (cond.type != CRB_BOOLEAN_VALUE) {
                 crb_runtime_error(statement->u.for_s.condition->line_number, NOT_BOOLEAN_OPERATOR_ERR, MESSAGE_ARGUMENT_END);
             }
-            DBG_ASSERT(cond.type == CRB_BOOLEAN_VALUE, ("cond.type..%d", cond.type));
+            DBG_assert(cond.type == CRB_BOOLEAN_VALUE, ("cond.type..%d", cond.type));
             if (!cond.u.boolean_value)
                 break;
         }
@@ -165,7 +165,7 @@ execute_for_statement(CRB_Interpreter *inter, LocalEnvironment *env, Statement *
             break;
         }
         if (statement->u.for_s.post) {
-            crb_eval_expression(itner, env, statement->u.for_s.post);
+            crb_eval_expression(inter, env, statement->u.for_s.post);
         }
     }
     return result;
@@ -234,7 +234,7 @@ execute_statement(CRB_Interpreter *inter, LocalEnvironment *env, Statement *stat
             break;
         case STATEMENT_TYPE_COUNT_PLUS_1:
         default:
-            DBG_PANIC(("bad case...%d", statement->type));
+            DBG_panic(("bad case...%d", statement->type));
     }
 
     return result;

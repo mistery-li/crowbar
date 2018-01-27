@@ -494,7 +494,7 @@ eval_compare_string(ExpressionType operator, CRB_Value *left, CRB_Value *right, 
         result = (cmp <= 0);
     } else {
         char *op_str = crb_get_operator_string(operator);
-        crb_runtime_error(line_number, BAD_OPERATOR_FOR_STRING_ERR, STRING_MEEAGE_ARGUMENT, "operator", op_Str, MESSAGE_ARGUMENT_END);
+        crb_runtime_error(line_number, BAD_OPERATOR_FOR_STRING_ERR, STRING_MEEAGE_ARGUMENT, "operator", op_str, MESSAGE_ARGUMENT_END);
     }
     crb_release_string(left->u.string_value);
     crb_release_string(right->u.string_value);
@@ -589,7 +589,7 @@ eval_assign_expression(CRB_Interpreter *inter, LocalEnvironment *env, char *iden
 }
 
 static void
-dispost_local_environment(CRB_Interpreter *inter, LocalEnvironment *env,)
+dispose_local_environment(CRB_Interpreter *inter, LocalEnvironment *env)
 {
     while (env->variable) {
         Variable *temp;

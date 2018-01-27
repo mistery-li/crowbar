@@ -235,6 +235,7 @@ typedef struct {
     GlobalVariableRef   *global_variable;
 } LocalEnvironment;
 
+
 struct Statement_tag {
     StatementType       *type;
     int                 line_number;
@@ -248,11 +249,11 @@ struct Statement_tag {
     } u;
 };
 
-struct CRB_String_tag {
+typedef struct CRB_String_tag {
     int     ref_count;
     char    *string;
     CRB_Boolean is_literal;
-};
+} CRB_String;
 
 typedef struct {
     CRB_String *string;
@@ -294,3 +295,5 @@ CRB_Interpreter *crb_get_current_interpreter(void);
 
 StatementResult
 crb_execute_statement_list(CRB_Interpreter *inter, LocalEnvironment *env, StatementList *list);
+
+CRB_Value crb_eval_expression(CRB_Interpreter *inter, LocalEnvironment *env, Expression *expr);
