@@ -257,6 +257,33 @@ main.c.s:
 	$(MAKE) -f CMakeFiles\crowbar.dir\build.make CMakeFiles/crowbar.dir/main.c.s
 .PHONY : main.c.s
 
+string_pool.obj: string_pool.c.obj
+
+.PHONY : string_pool.obj
+
+# target to build an object file
+string_pool.c.obj:
+	$(MAKE) -f CMakeFiles\crowbar.dir\build.make CMakeFiles/crowbar.dir/string_pool.c.obj
+.PHONY : string_pool.c.obj
+
+string_pool.i: string_pool.c.i
+
+.PHONY : string_pool.i
+
+# target to preprocess a source file
+string_pool.c.i:
+	$(MAKE) -f CMakeFiles\crowbar.dir\build.make CMakeFiles/crowbar.dir/string_pool.c.i
+.PHONY : string_pool.c.i
+
+string_pool.s: string_pool.c.s
+
+.PHONY : string_pool.s
+
+# target to generate assembly for a file
+string_pool.c.s:
+	$(MAKE) -f CMakeFiles\crowbar.dir\build.make CMakeFiles/crowbar.dir/string_pool.c.s
+.PHONY : string_pool.c.s
+
 util.obj: util.c.obj
 
 .PHONY : util.obj
@@ -308,6 +335,9 @@ help:
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s
+	@echo ... string_pool.obj
+	@echo ... string_pool.i
+	@echo ... string_pool.s
 	@echo ... util.obj
 	@echo ... util.i
 	@echo ... util.s

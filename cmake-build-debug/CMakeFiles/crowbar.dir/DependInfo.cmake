@@ -9,6 +9,7 @@ set(CMAKE_DEPENDS_CHECK_C
   "C:/Users/liii/CLionProjects/crowbar/eval.c" "C:/Users/liii/CLionProjects/crowbar/cmake-build-debug/CMakeFiles/crowbar.dir/eval.c.obj"
   "C:/Users/liii/CLionProjects/crowbar/execute.c" "C:/Users/liii/CLionProjects/crowbar/cmake-build-debug/CMakeFiles/crowbar.dir/execute.c.obj"
   "C:/Users/liii/CLionProjects/crowbar/main.c" "C:/Users/liii/CLionProjects/crowbar/cmake-build-debug/CMakeFiles/crowbar.dir/main.c.obj"
+  "C:/Users/liii/CLionProjects/crowbar/string_pool.c" "C:/Users/liii/CLionProjects/crowbar/cmake-build-debug/CMakeFiles/crowbar.dir/string_pool.c.obj"
   "C:/Users/liii/CLionProjects/crowbar/util.c" "C:/Users/liii/CLionProjects/crowbar/cmake-build-debug/CMakeFiles/crowbar.dir/util.c.obj"
   )
 set(CMAKE_C_COMPILER_ID "GNU")

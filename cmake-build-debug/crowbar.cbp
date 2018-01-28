@@ -106,6 +106,9 @@
 		<Unit filename="C:/Users/liii/CLionProjects/crowbar/main.c">
 			<Option target="crowbar"/>
 		</Unit>
+		<Unit filename="C:/Users/liii/CLionProjects/crowbar/string_pool.c">
+			<Option target="crowbar"/>
+		</Unit>
 		<Unit filename="C:/Users/liii/CLionProjects/crowbar/util.c">
 			<Option target="crowbar"/>
 		</Unit>

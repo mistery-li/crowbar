@@ -5,6 +5,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/crowbar.dir/util.c.obj"
   "CMakeFiles/crowbar.dir/execute.c.obj"
   "CMakeFiles/crowbar.dir/eval.c.obj"
+  "CMakeFiles/crowbar.dir/string_pool.c.obj"
   "crowbar.pdb"
   "crowbar.exe"
   "crowbar.exe.manifest"
