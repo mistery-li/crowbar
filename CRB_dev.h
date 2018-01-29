@@ -36,8 +36,8 @@ typedef struct {
         CRB_Boolean boolean_value;
         int         int_value;
         double      double_value;
-        CRB_String  *string_value;
         CRB_NativePointer  native_pointer;
+        CRB_Object   *object;
     } u;
 } CRB_Value;
 

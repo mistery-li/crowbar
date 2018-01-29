@@ -101,6 +101,21 @@ typedef struct {
     Expression  *right;
 } BinaryExpression;
 
+typedef struct {
+    Expression *array;
+    Expression *index;
+} IndexExpression;
+
+typedef struct {
+    Expression *operand;
+} IncrementOrDecrement;
+
+typedef struct {
+    Expression *expression;
+    char        *identifier;
+    ArgumentList *argument;
+} MethodCallExpression;
+
 struct Expression_tag {
     ExpressionType type;
     int line_number;
@@ -116,7 +131,6 @@ struct Expression_tag {
         FunctionCallExpression  function_call_expression;
     } u;
 };
-
 
 typedef struct ParameterList_tag {
     char                        *name;
@@ -235,6 +249,24 @@ typedef struct {
     GlobalVariableRef   *global_variable;
 } LocalEnvironment;
 
+struct CRB_LocalEnvironment_tag {
+    Variable   *variable;
+    GlobalVariableRef  *global_variable;
+    RefInNativeFunc    *ref_in_native_method;
+    struct  CRB_LocalEnvironment_tag  *next;
+};
+
+typedef struct {
+    int stack_alloc_size;
+    int   stack_pointer;
+    CRB_Value  *stack;
+} Stack;
+
+typedef struct {
+    int     current_heap_size;
+    int     current_threshold;
+    CRB_Object  *header;
+} Heap;
 
 struct Statement_tag {
     StatementType       *type;
@@ -250,10 +282,33 @@ struct Statement_tag {
 };
 
 typedef struct CRB_String_tag {
-    int     ref_count;
-    char    *string;
-    CRB_Boolean is_literal;
-} CRB_String;
+    CRB_Boolean  is_literal;
+    char *string;
+};
+
+struct CRB_Array_tag {
+    int    size;
+    int     alloc_size;
+    CRB_Value   *array;
+};
+
+typedef enum {
+    ARRAY_OBJECT = 1,
+    STRING_OBJECT,
+    OBJECT_TYPE_COUNT_PLUS_1
+} ObjectType;
+
+
+struct CRB_Object_tag {
+    ObjectType type;
+    unsigned int marked:1;
+    union {
+        CRB_Array  array;
+        CRB_String string;
+    } u;
+    struct CRB_Object_tag *prev;
+    struct CRB_Object_tag *next;
+};
 
 typedef struct {
     CRB_String *string;
@@ -266,6 +321,7 @@ struct CRB_Interpreter_tag {
     FunctionDefinition *function_list;
     StatementList      *statement_list;
     int                current_line_number;
+    struct CRB_LocalEnvironment_tag *top_environment;
 };
 
 Expression *crb_alloc_expression(ExpressionType type);

@@ -103,6 +103,9 @@
 		<Unit filename="C:/Users/liii/CLionProjects/crowbar/execute.c">
 			<Option target="crowbar"/>
 		</Unit>
+		<Unit filename="C:/Users/liii/CLionProjects/crowbar/heap.c">
+			<Option target="crowbar"/>
+		</Unit>
 		<Unit filename="C:/Users/liii/CLionProjects/crowbar/main.c">
 			<Option target="crowbar"/>
 		</Unit>

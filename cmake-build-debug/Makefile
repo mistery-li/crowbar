@@ -230,6 +230,33 @@ execute.c.s:
 	$(MAKE) -f CMakeFiles\crowbar.dir\build.make CMakeFiles/crowbar.dir/execute.c.s
 .PHONY : execute.c.s
 
+heap.obj: heap.c.obj
+
+.PHONY : heap.obj
+
+# target to build an object file
+heap.c.obj:
+	$(MAKE) -f CMakeFiles\crowbar.dir\build.make CMakeFiles/crowbar.dir/heap.c.obj
+.PHONY : heap.c.obj
+
+heap.i: heap.c.i
+
+.PHONY : heap.i
+
+# target to preprocess a source file
+heap.c.i:
+	$(MAKE) -f CMakeFiles\crowbar.dir\build.make CMakeFiles/crowbar.dir/heap.c.i
+.PHONY : heap.c.i
+
+heap.s: heap.c.s
+
+.PHONY : heap.s
+
+# target to generate assembly for a file
+heap.c.s:
+	$(MAKE) -f CMakeFiles\crowbar.dir\build.make CMakeFiles/crowbar.dir/heap.c.s
+.PHONY : heap.c.s
+
 main.obj: main.c.obj
 
 .PHONY : main.obj
@@ -332,6 +359,9 @@ help:
 	@echo ... execute.obj
 	@echo ... execute.i
 	@echo ... execute.s
+	@echo ... heap.obj
+	@echo ... heap.i
+	@echo ... heap.s
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s
