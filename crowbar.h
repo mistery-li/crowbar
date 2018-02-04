@@ -11,6 +11,9 @@
 
 #define MESSAGE_ARGUMENT_MAX (256)
 #define LINE_BUF_SIZE        (1024)
+#define STACK_ALLOC_SIZE     (256)
+#define ARRAY_ALLOC_SIZE     (256)
+
 
 typedef enum {
     PARSE_ERR = 1,
@@ -37,6 +40,8 @@ typedef enum {
     GLOBAL_VARIABLE_NOT_FOUND_ERR,
     GLOBAL_STATEMENT_IN_TOPLEVEL_ERR,
     BAD_OPERATOR_FOR_STRING_ERR,
+    NEW_ARRAY_ARGUMENT_TYPE_ERR,
+    ARRAY_RESIZE_ARGUMENT_TYPE_ERR,
     RUNTIME_ERRPR_COUNT_PLUS_1
 } RumtimeError;
 
@@ -239,6 +244,11 @@ typedef struct {
     } u;
 } StatementResult;
 
+typedef struct RefInNativeFunc_tag {
+    CRB_Object *object;
+    struct RefInNativeFunc_tag *next;
+} RefInNativeFunc;
+
 typedef struct GlobalVariableRef_tag {
     Variable *variable;
     struct GlobalVariableRef_tag *next;
@@ -298,6 +308,20 @@ typedef enum {
     OBJECT_TYPE_COUNT_PLUS_1
 } ObjectType;
 
+#define dkc_is_object_value(type) \
+    ((type) == CRB_STRING_VALUE || (type == CRB_ARRAY_VALUE))
+
+struct CRB_Object_tag {
+    ObjectType type;
+    unsigned int marked: 1;
+    union {
+        CRB_Array   array;
+        CRB_String  string;
+    } u;
+    struct CRB_Object_tag  *prev;
+    struct CRB_Object_tag   *next;
+};
+
 
 struct CRB_Object_tag {
     ObjectType type;
@@ -321,6 +345,8 @@ struct CRB_Interpreter_tag {
     FunctionDefinition *function_list;
     StatementList      *statement_list;
     int                current_line_number;
+    Stack              stack;
+    Heap               heap;
     struct CRB_LocalEnvironment_tag *top_environment;
 };
 

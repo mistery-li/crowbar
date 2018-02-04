@@ -284,6 +284,33 @@ main.c.s:
 	$(MAKE) -f CMakeFiles\crowbar.dir\build.make CMakeFiles/crowbar.dir/main.c.s
 .PHONY : main.c.s
 
+native.obj: native.c.obj
+
+.PHONY : native.obj
+
+# target to build an object file
+native.c.obj:
+	$(MAKE) -f CMakeFiles\crowbar.dir\build.make CMakeFiles/crowbar.dir/native.c.obj
+.PHONY : native.c.obj
+
+native.i: native.c.i
+
+.PHONY : native.i
+
+# target to preprocess a source file
+native.c.i:
+	$(MAKE) -f CMakeFiles\crowbar.dir\build.make CMakeFiles/crowbar.dir/native.c.i
+.PHONY : native.c.i
+
+native.s: native.c.s
+
+.PHONY : native.s
+
+# target to generate assembly for a file
+native.c.s:
+	$(MAKE) -f CMakeFiles\crowbar.dir\build.make CMakeFiles/crowbar.dir/native.c.s
+.PHONY : native.c.s
+
 string_pool.obj: string_pool.c.obj
 
 .PHONY : string_pool.obj
@@ -365,6 +392,9 @@ help:
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s
+	@echo ... native.obj
+	@echo ... native.i
+	@echo ... native.s
 	@echo ... string_pool.obj
 	@echo ... string_pool.i
 	@echo ... string_pool.s

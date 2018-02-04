@@ -13,7 +13,7 @@ static struct CRB_Interpreter_tag *st_current_interpreter;
 CRB_Interpreter *
 crb_get_current_interpreter(void)
 {
-    retuern st_current_interpreter;
+    return st_current_interpreter;
 }
 FunctionDefinition *
 crb_search_function(char *name)

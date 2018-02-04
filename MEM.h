@@ -27,3 +27,9 @@ void *MEM_malloc_func(MEM_Controller controller, char *filename, int line, size_
 #define MEM_malloc(size)\
     (MEM_malloc_func(MEM_CURRENT_CONTROLLER,\
                     __FILE__,__LINE__, size))
+
+#define MEM_storage_malloc(storage, size)\
+    (MEM_storage_malloc_func(MEM_CURRENT_CONTROLLOER,\
+                            __FILE__,__LINE__, storage, size))
+#define  MEM_realloc(prt, size)\
+            (MEM_realloc_func(MEM_CURRENT_CONTROLLER, __FILE__,__LINE__,prt, size))
